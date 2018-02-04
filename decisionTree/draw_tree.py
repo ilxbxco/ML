@@ -1,3 +1,4 @@
+# draw the final decision tree
 def drawTree(subject,dataset,path,verti):
 	import divide
 	if path == {}:
@@ -8,5 +9,5 @@ def drawTree(subject,dataset,path,verti):
 			count = {}
 			for g in new_set[subject]:
 				count[g] = count.get(g,0) + 1
-			print verti*'| ' + p[0] + '=' + p[1] + ':' + ' ' + str(count)
+			print verti*'| ' + p[0].lstrip(' ') + '=' + p[1] + ':' + ' ' + str(count)
 			drawTree(subject,new_set,path[p],verti+1)
