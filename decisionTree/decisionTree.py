@@ -2,6 +2,7 @@
 # python <trainingData>.csv <testData>.csv searchDepth <trainingLabels>.labels <testingLabels>.labels <errorRate>.txt
 import sys,csv,numpy,anticipate,error_rate
 import  evaluate_route as evr
+import draw_tree as dt
 argument = sys.argv
 
 f = file(argument[1],'rb')
@@ -55,6 +56,14 @@ for final in results:
 	writeTest.write(str(final) + '\n')
 writeErr.write(str(err_train) + '\n')
 writeErr.write(str(err_test) + '\n')
+
+# print out how I made the decision tree
+final_data = index[subject]
+final_count = {}
+for final_search in final_data:
+	final_count[final_search] = final_count.get(final_search,0) + 1
+print str(final_count)
+dt.drawTree(subject,index,path,1)
 
 writeTrain.close()
 writeTest.close()
